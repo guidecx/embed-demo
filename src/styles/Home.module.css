@@ -3,11 +3,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-right: 6rem;
-  padding-left: 6rem;
-  padding-bottom: 6rem;
+  padding: 25px;
   min-height: 100vh;
-  background: darkblue;
+  background: gray;
 }
 
 .embed {
@@ -15,6 +13,7 @@
   width: 100%;
   background: white;
   border: 1px solid black;
+  border-radius: 10px;
 }
 
 .title {
@@ -113,7 +112,7 @@
 
 .center::before,
 .center::after {
-  content: "";
+  content: '';
   left: 50%;
   position: absolute;
   filter: blur(45px);
