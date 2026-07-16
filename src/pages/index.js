@@ -33,7 +33,10 @@ export default function Home() {
   }
 
   const generateIframeUrl = () => { 
-    const url = new URL(`/auth/customer-login/sso`, 'https://app.guidecx.com/')
+    const url = new URL(
+      `/auth/customer-login/sso`,
+      process.env.NEXT_PUBLIC_EMBED_APP_URL || "https://app.guidecx.com/"
+    );
 
     url.searchParams.append('token', embedToken)
     url.searchParams.append('projectId', projectId)
