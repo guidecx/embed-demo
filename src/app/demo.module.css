@@ -1,0 +1,145 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px 24px;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.button {
+  appearance: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fff;
+  color: #111;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #f1f1f1;
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.buttonActive {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.panelsSideBySide {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 8px;
+}
+
+.panelHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.badge {
+  background: #111;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.select {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fff;
+  max-width: 240px;
+}
+
+.url {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  color: #555;
+  word-break: break-all;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
+.error {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  color: #b00020;
+  background: #fff4f4;
+  border: 1px solid #f2c9c9;
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+
+.embed {
+  height: 80vh;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+
+.setup {
+  margin: auto;
+  font-size: 0.95rem;
+  color: #555;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 20px 24px;
+}
