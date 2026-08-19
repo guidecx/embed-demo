@@ -49,7 +49,7 @@ The two versions are not interchangeable:
 | response | `{ data: { embedToken, projects } }` | `{ embedToken, projects }` |
 | SSO route | `/embed/customer-login/sso` | `/auth/customer-login/sso` |
 | landing | `/embed/portal/{projectId}/{page}` | `/customer/{page}/{projectId}` |
-| pages | `today`, `overview`, `messages`, `resources`, `attachments` | `today`, `notes`, `attachments` |
+| pages | `today`, `overview`, `messages`, `attachments` | `today`, `notes`, `attachments` |
 
 A legacy token against the v3 API returns `401 Invalid Token`. Project ids are not shared either: the same customer comes back with a different project list per version, which is why each panel has its own picker. The page picker offers one provider-facing name per version and shows the translation, e.g. `messages → notes` on 1.0.
 

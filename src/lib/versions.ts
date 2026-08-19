@@ -15,7 +15,6 @@ export const PAGES = [
   "today",
   "overview",
   "messages",
-  "resources",
   "attachments",
 ] as const;
 
@@ -40,7 +39,6 @@ export const VERSIONS: Record<PortalVersion, VersionConfig> = {
       today: "today",
       overview: "overview",
       messages: "messages",
-      resources: "resources",
       attachments: "attachments",
     },
   },
@@ -49,12 +47,11 @@ export const VERSIONS: Record<PortalVersion, VersionConfig> = {
     label: "1.0",
     name: "Compass 1.0",
     ssoPath: "/auth/customer-login/sso",
-    // 1.0 has no overview or resources page, and calls messages "notes".
+    // 1.0 has no overview page, and calls messages "notes".
     pages: {
       today: "today",
       overview: "today",
       messages: "notes",
-      resources: "today",
       attachments: "attachments",
     },
   },
