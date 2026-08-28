@@ -13,6 +13,8 @@ The flow a provider implements is three steps:
 
 3. The app exchanges the token for a session and redirects into the portal at `/embed/portal/{projectId}/{page}`.
 
+The 2.0 route also accepts an optional `theme=dark` to render the portal in dark mode, so it can match the provider's own page. Omit it (or send `theme=default`) for the standard look. The choice is stored in the portal's theme cookie for that browser, so it persists until a later exchange sends a different value. In the demo, the Light/Dark button in the header switches the demo page and the 2.0 portal together, the way a provider's own theme toggle would.
+
 In this demo, step 1 is [src/app/api/embed-token/route.ts](src/app/api/embed-token/route.ts) and steps 2-3 are [src/app/demo.tsx](src/app/demo.tsx). Everything that differs between the 2.0 and legacy 1.0 portals is in [src/lib/versions.ts](src/lib/versions.ts).
 
 ## Getting started
@@ -50,6 +52,7 @@ The two versions are not interchangeable:
 | SSO route | `/embed/customer-login/sso` | `/auth/customer-login/sso` |
 | landing | `/embed/portal/{projectId}/{page}` | `/customer/{page}/{projectId}` |
 | pages | `today`, `overview`, `messages`, `attachments` | `today`, `notes`, `attachments` |
+| `theme` param | `default`, `dark` | not supported |
 
 A legacy token against the v3 API returns `401 Invalid Token`. Project ids are not shared either: the same customer comes back with a different project list per version, which is why each panel has its own picker. The page picker offers one provider-facing name per version and shows the translation, e.g. `messages → notes` on 1.0.
 
