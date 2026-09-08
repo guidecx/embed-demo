@@ -20,6 +20,11 @@ export const PAGES = [
 
 export type PageName = (typeof PAGES)[number];
 
+/** Portal themes a provider can ask for. Only 2.0 understands the param. */
+export const THEMES = ["default", "dark"] as const;
+
+export type ThemeName = (typeof THEMES)[number];
+
 export type VersionConfig = {
   id: PortalVersion;
   label: string;
@@ -27,6 +32,8 @@ export type VersionConfig = {
   ssoPath: string;
   /** Provider-facing page name -> the page name this version understands. */
   pages: Record<PageName, string>;
+  /** Whether the SSO route accepts `theme`. 1.0 ignores it, so we do not send it. */
+  supportsTheme: boolean;
 };
 
 export const VERSIONS: Record<PortalVersion, VersionConfig> = {
@@ -41,6 +48,7 @@ export const VERSIONS: Record<PortalVersion, VersionConfig> = {
       messages: "messages",
       attachments: "attachments",
     },
+    supportsTheme: true,
   },
   "1": {
     id: "1",
@@ -54,6 +62,7 @@ export const VERSIONS: Record<PortalVersion, VersionConfig> = {
       messages: "notes",
       attachments: "attachments",
     },
+    supportsTheme: false,
   },
 };
 
@@ -68,7 +77,13 @@ export type EmbedTokenResponse = {
 export function buildSsoUrl(
   config: VersionConfig,
   appUrl: string,
-  params: { embedToken: string; projectId: string; email: string; page: PageName },
+  params: {
+    embedToken: string;
+    projectId: string;
+    email: string;
+    page: PageName;
+    theme?: ThemeName;
+  },
 ): string {
   const url = new URL(config.ssoPath, appUrl);
 
@@ -76,6 +91,14 @@ export function buildSsoUrl(
   url.searchParams.set("projectId", params.projectId);
   url.searchParams.set("email", params.email);
   url.searchParams.set("page", config.pages[params.page]);
+
+  // Optional. The portal stores the value in its theme cookie, so it sticks for
+  // that browser until the next exchange says otherwise. That is why `default`
+  // is sent explicitly too: without it, switching back to light would not
+  // undo an earlier `dark`.
+  if (config.supportsTheme && params.theme) {
+    url.searchParams.set("theme", params.theme);
+  }
 
   return url.toString();
 }
